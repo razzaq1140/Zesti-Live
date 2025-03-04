@@ -1,0 +1,48 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    // Namespace is now correctly specified
+    namespace = "com.example.flutter_application_zestilive"
+    
+    // These are fetched from Flutter's configuration
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.flutter_application_zestilive"
+        
+        // Define minimum and target SDK versions using Flutter variables
+        minSdk = 24
+        targetSdk = flutter.targetSdkVersion
+        
+        // Versioning of the app
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            // This ensures the release build is signed, using debug signing for now
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    // Flutter project source configuration
+    source = "../.."
+}
